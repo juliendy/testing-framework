@@ -69,6 +69,12 @@ Decided to use [this package](https://www.npmjs.com/package/dotenv) because it h
 
 # Run tests
 > npm test
+
+# Generate code with codegen
+
+See documentation about [codegen](https://playwright.dev/docs/codegen-intro)
+
+> npx playwright codegen <url_to_test>
 # Resources
 
 ## Tools & frameworks

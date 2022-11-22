@@ -1,5 +1,5 @@
 # Testing Framework
-- A mini project for me to learn texting with TypeScript, Jest and Playwright.
+- A mini project for me to learn testing with TypeScript, Jest and Playwright.
 # Setup
 1. Download [nodejs](https://nodejs.org/en/download/) + [how to install nodejs](https://phoenixnap.com/kb/install-node-js-npm-on-windows)
 - If it is already installed, check in terminal:

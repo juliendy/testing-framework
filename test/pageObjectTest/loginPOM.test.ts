@@ -56,4 +56,22 @@ describe("Test login form", () => {
         await page.click("text=Log out");
         expect(page.url()).toBe(loginURL);
     });
+
+        test("Login with invalid password", async () => {
+            expect(page.url()).toBe(loginURL);
+            await login.login_form(username, "invalid");
+
+            expect(await login.errorLoginMsg.innerText()).toBe(
+                "Invalid username or password!"
+            );
+        });
+
+        test("Login with invalid username", async () => {
+            expect(page.url()).toBe(loginURL);
+            await login.login_form("invalid", password);
+
+            expect(await login.errorLoginMsg.innerText()).toBe(
+                "Invalid username or password!"
+            );
+        });
 });

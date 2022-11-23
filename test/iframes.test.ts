@@ -34,12 +34,11 @@ describe("Interact with iframes", () => {
     });
 
     test("Interact with nested frames on Letcode", async () => {
-        // TODO:
-        // await and expect page to not be null
         await page.goto(frames_letcode_URL);
-        // dismiss consent to use data
         expect(page).not.toBeNull();
         expect(await page.title()).not.toBeNull();
+
+        // dismiss consent to use data
         await page.click(locator_not_consent);
 
         const frame = page.frame({ name: first_frame_name });
@@ -56,7 +55,6 @@ describe("Interact with iframes", () => {
 
             await frames[1]?.fill(email_name, email_data);
 
-            // fill data in frames (toBe did not work, toContain?)
             const parentFrame = frames[1].parentFrame();
             await parentFrame?.fill(lastName_name, lastName_data_parent);
             expect(await frame.innerText(output_xpath)).toContain(

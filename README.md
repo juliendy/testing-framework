@@ -86,7 +86,7 @@ jest test
 > jest <test_suite>.test.ts
 # Results
 
-![alt text]([TESTLINKHERE] "All tests")
+![alt text]([screenshots/all_test_jest_playwright.png] "All tests")
 
 # Generate code with codegen
 

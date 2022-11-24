@@ -72,9 +72,21 @@ Decided to use [this package](https://www.npmjs.com/package/dotenv) because it h
 > npm i -g jest-cli
 
 # Run tests
+
+## Run all tests
 > npm test
+
 OR
-> jest <test_suite.test.ts>
+
+jest test
+^ jest runs all tests in parallel, so in order to run them sequentially:
+
+> jest -i
+## Run one test suite
+> jest <test_suite>.test.ts
+# Results
+
+![alt text]([TESTLINKHERE] "All tests")
 
 # Generate code with codegen
 

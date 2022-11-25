@@ -15,5 +15,8 @@
         "Programming JavaScript Applications",
         "Eloquent JavaScript, Second Edition",
         "Understanding ECMAScript 6"
-    ]
+    ],
+    "keyword_match_title": "Java",
+    "keyword_no_match": "ZZZZZ",
+    "no_rows_text": "No rows found"
 }

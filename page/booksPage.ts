@@ -47,6 +47,10 @@ export default class BooksPage {
         return this.page.locator("#searchBox")
     }
 
+    public get noRowsTxt() {
+        return this.page.locator('.rt-noData');
+    }
+
     public async clickLoginBtn() {
         const elem = this.elementLoginBtn;
         await elem?.click();

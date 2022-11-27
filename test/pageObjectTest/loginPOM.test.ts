@@ -1,13 +1,9 @@
 import { Browser, BrowserContext, chromium, Page } from "playwright";
 import LoginPage from "../../page/loginPage";
 import BooksPage from "../../page/booksPage";
-import * as data from "../../data/variables.json"
+import * as data from "../../data/variables.json";
 import * as dotenv from "dotenv";
 dotenv.config();
-
-const baseURL = "https://demoqa.com/";
-const loginURL = baseURL + "login";
-const profileURL = baseURL + "profile";
 
 // get credentials set as env variables
 const username: string = process.env.USERNAME_TS as string;
@@ -26,9 +22,9 @@ describe("Test login form", () => {
         context = await browser.newContext();
         page = await context.newPage();
 
-        await page.goto(loginURL);
         login = new LoginPage(page);
         books = new BooksPage(page);
+        await login.navigate();
     });
 
     afterAll(async () => {
@@ -38,11 +34,11 @@ describe("Test login form", () => {
     });
 
     test("Login with valid credentials", async () => {
-        expect(page.url()).toBe(loginURL);
-        await login.login_form(username, password);
+        expect(page.url()).toBe(login.loginURL);
+        await login.loginForm(username, password);
 
-        await page.waitForURL(profileURL);
-        expect(page.url()).toBe(profileURL);
+        await page.waitForURL(login.profileURL);
+        expect(page.url()).toBe(login.profileURL);
 
         const name_returned = books.elementUserNameTxt;
 
@@ -55,19 +51,19 @@ describe("Test login form", () => {
         expect(await name_returned?.textContent()).toBe(username);
 
         await page.click("text=Log out");
-        expect(page.url()).toBe(loginURL);
+        expect(page.url()).toBe(login.loginURL);
     });
 
     test("Login with invalid password", async () => {
-        expect(page.url()).toBe(loginURL);
-        await login.login_form(username, data.invalidData);
+        expect(page.url()).toBe(login.loginURL);
+        await login.loginForm(username, data.invalidData);
 
         expect(await login.errorLoginMsg.innerText()).toBe(data.errorMsgLogin);
     });
 
     test("Login with invalid username", async () => {
-        expect(page.url()).toBe(loginURL);
-        await login.login_form(data.invalidData, password);
+        expect(page.url()).toBe(login.loginURL);
+        await login.loginForm(data.invalidData, password);
 
         expect(await login.errorLoginMsg.innerText()).toBe(data.invalidData);
     });

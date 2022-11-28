@@ -28,15 +28,12 @@ describe("As registered user can login on Book Store from demoQA", () => {
     });
 
     afterAll(async () => {
+        await page.close();
         await context.close();
         await browser.close();
     });
 
     test("Login with valid credentials", async () => {
-        const browser = await chromium.launch({ headless: false, slowMo: 400 });
-        const context = await browser.newContext();
-        const page = await context.newPage();
-
         await page.goto(loginURL);
         expect(page).not.toBeNull();
         expect(await page.title()).not.toBeNull();
@@ -72,7 +69,6 @@ describe("As registered user can login on Book Store from demoQA", () => {
         await page.getByPlaceholder("UserName").fill(username);
         await page.getByPlaceholder("UserName").press("Tab");
         await page.getByPlaceholder("Password").fill(password);
-
         await page.getByRole("button", { name: "Login" }).click();
         await page.waitForURL(profileURL);
 

@@ -87,6 +87,10 @@ export default class InventoryPage extends BasePage {
         await this.selectSortFilter.selectOption({ value: "za" });
     }
 
+    public async clickFilterPriceDesc() {
+        await this.selectSortFilter.selectOption({ value: "hilo" });
+    }
+
     public async clickFilterNameAsc() {
         await this.selectSortFilter.selectOption({ value: "az" });
     }

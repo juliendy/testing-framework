@@ -1,5 +1,6 @@
 import { Page } from "playwright";
 import BasePage from "./basePage";
+
 export default class LoginPage extends BasePage {
     readonly emailInputId = "input[id='userName']";
     readonly passwordInputId = "input[id='password']";
@@ -17,6 +18,7 @@ export default class LoginPage extends BasePage {
     public get elementEmailTextField() {
         return this.page.locator(this.emailInputId);
     }
+
     // short way of writing same thing:
     elementPasswordTextField = async () =>
         this.page.locator(this.passwordInputId);
@@ -36,15 +38,18 @@ export default class LoginPage extends BasePage {
         const elem = await this.elementPasswordTextField();
         await elem?.fill(password);
     }
+
     public async clickLoginBtn() {
         const elem = this.elementLoginBtn;
         await elem?.click();
     }
+
     public async loginForm(username: string, password: string) {
         await this.enterUserName(username);
         await this.enterPassword(password);
         await this.clickLoginBtn();
     }
+
     public get errorLoginMsg() {
         return this.page.locator(this.errorMsgId);
     }

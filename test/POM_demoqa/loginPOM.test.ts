@@ -40,15 +40,15 @@ describe("Test login form", () => {
         await page.waitForURL(login.profileURL);
         expect(page.url()).toBe(login.profileURL);
 
-        const nameNeturned = books.elementUserNameTxt;
+        const nameReturned = books.elementUserNameTxt;
 
-        if (nameNeturned) {
-            expect(await nameNeturned.innerText()).toBe(username);
+        if (nameReturned) {
+            expect(await nameReturned.innerText()).toBe(username);
         } else {
             throw new Error("No username value is returned!");
         }
 
-        expect(await nameNeturned?.textContent()).toBe(username);
+        expect(await nameReturned?.textContent()).toBe(username);
 
         await page.click("text=Log out");
         expect(page.url()).toBe(login.loginURL);
@@ -65,6 +65,6 @@ describe("Test login form", () => {
         expect(page.url()).toBe(login.loginURL);
         await login.loginForm(data.invalidData, password);
 
-        expect(await login.errorLoginMsg.innerText()).toBe(data.invalidData);
+        expect(await login.errorLoginMsg.innerText()).toBe(data.errorMsgLogin);
     });
 });

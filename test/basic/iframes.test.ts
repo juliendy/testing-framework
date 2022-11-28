@@ -3,7 +3,7 @@ import { Browser, BrowserContext, chromium, Page } from "playwright";
 const base_letcode_URL = "https://letcode.in/";
 const frames_letcode_URL = base_letcode_URL + "frame";
 
-// const locator_not_consent = 'text="Do not consent"';
+const locator_not_consent = 'text="Do not consent"';
 const first_frame_name = "firstFr";
 const firstName_name = "input[name='fname']";
 const lastName_name = "input[name='lname']";
@@ -38,8 +38,8 @@ describe("Interact with iframes", () => {
         expect(page).not.toBeNull();
         expect(await page.title()).not.toBeNull();
 
-        // // dismiss consent to use data
-        // await page.click(locator_not_consent);
+        // dismiss consent to use data
+        //await page.click(locator_not_consent);
 
         const frame = page.frame({ name: first_frame_name });
         if (frame != null) {

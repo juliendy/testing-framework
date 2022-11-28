@@ -75,7 +75,7 @@ describe("Find multiple elements: list of books", () => {
             })
         );
 
-        for (let index = 0; index <= book_titles.length - 1; index++) {
+        for (var index = 0; index <= book_titles.length - 1; index++) {
             expect(book_titles[index]).toBe(title_list[index]);
         }
     });

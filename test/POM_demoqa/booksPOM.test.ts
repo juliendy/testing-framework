@@ -118,7 +118,7 @@ describe("Test books page as anonymous and authenticated user", () => {
         expect(page.url()).toBe(books.loginURL);
     });
 
-    test("Anonymous user can search for books by title", async () => {
+    test("Anonymous user can search books by title", async () => {
         expect(page.url()).toBe(books.booksURL);
 
         expect(await books.searchInputField.isVisible()).toBe(true);
@@ -133,7 +133,7 @@ describe("Test books page as anonymous and authenticated user", () => {
         expect(await allBookTitles[3].innerText()).toBe(data.bookTitles[6]);
     });
 
-    test("No Rows are displayed when the keyword does not match title, author or publisher", async () => {
+    test("No rows are displayed when keyword does not match title, author or publisher", async () => {
         expect(page.url()).toBe(books.booksURL);
 
         expect(await books.searchInputField.isVisible()).toBe(true);

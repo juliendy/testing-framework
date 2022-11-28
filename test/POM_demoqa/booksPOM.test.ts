@@ -38,38 +38,34 @@ describe("Test books page as anonymous and authenticated user", () => {
 
     test("Anonymous user can see book store list and login button", async () => {
         expect(page.url()).toBe(books.booksURL);
-        expect(await books.bookHeader.innerText()).toBe(
-            data.bookStoreHeader
-        );
+        expect(await books.bookHeader.innerText()).toBe(data.bookStoreHeader);
 
         expect(await books.elementLoginBtn.isVisible()).toBe(true);
 
         expect(await books.tableHead.isVisible()).toBe(true);
 
-        let table_columns = await books.tableHeaderColumns;
-        expect(table_columns.length).toBe(4);
+        let tableColumns = await books.tableHeaderColumns;
+        expect(tableColumns.length).toBe(4);
 
-        expect(await table_columns[0].innerText()).toBe(data.tableColumnOne);
-        expect(await table_columns[1].innerText()).toBe(data.tableColumnTwo);
-        expect(await table_columns[2].innerText()).toBe(
-            data.tableColumnThree
-        );
-        expect(await table_columns[3].innerText()).toBe(data.tableColumnFour);
+        expect(await tableColumns[0].innerText()).toBe(data.tableColumnOne);
+        expect(await tableColumns[1].innerText()).toBe(data.tableColumnTwo);
+        expect(await tableColumns[2].innerText()).toBe(data.tableColumnThree);
+        expect(await tableColumns[3].innerText()).toBe(data.tableColumnFour);
 
         expect(await books.tableBody.isVisible()).toBe(true);
 
-        let table_rows = await books.tableBodyRows;
-        expect(table_rows.length).toBe(10);
+        let tableRows = await books.tableBodyRows;
+        expect(tableRows.length).toBe(10);
     });
 
     test("Anonymous user can see all book title from book store table", async () => {
         expect(page.url()).toBe(books.booksURL);
 
-        let all_book_titles = await books.allBookTitles;
-        expect(all_book_titles.length).toBe(8);
+        let allBookTitles = await books.allBookTitles;
+        expect(allBookTitles.length).toBe(8);
 
         let index = 0;
-        for await (const title of all_book_titles) {
+        for await (const title of allBookTitles) {
             expect(await title.innerText()).toBe(data.bookTitles[index]);
             index++;
         }
@@ -99,23 +95,21 @@ describe("Test books page as anonymous and authenticated user", () => {
 
         expect(await books.tableHead.isVisible()).toBe(true);
 
-        let table_columns = await books.tableHeaderColumns;
-        expect(table_columns.length).toBe(4);
+        let tableColumns = await books.tableHeaderColumns;
+        expect(tableColumns.length).toBe(4);
 
-        expect(await table_columns[0].innerText()).toBe(data.tableColumnOne);
-        expect(await table_columns[1].innerText()).toBe(data.tableColumnTwo);
-        expect(await table_columns[2].innerText()).toBe(
-            data.tableColumnThree
-        );
-        expect(await table_columns[3].innerText()).toBe(data.tableColumnFour);
+        expect(await tableColumns[0].innerText()).toBe(data.tableColumnOne);
+        expect(await tableColumns[1].innerText()).toBe(data.tableColumnTwo);
+        expect(await tableColumns[2].innerText()).toBe(data.tableColumnThree);
+        expect(await tableColumns[3].innerText()).toBe(data.tableColumnFour);
 
         expect(await books.tableBody.isVisible()).toBe(true);
 
-        let all_book_titles = await books.allBookTitles;
-        expect(all_book_titles.length).toBe(8);
+        let allBookTitles = await books.allBookTitles;
+        expect(allBookTitles.length).toBe(8);
 
         let index = 0;
-        for await (const title of all_book_titles) {
+        for await (const title of allBookTitles) {
             expect(await title.innerText()).toBe(data.bookTitles[index]);
             index++;
         }
@@ -130,22 +124,21 @@ describe("Test books page as anonymous and authenticated user", () => {
         expect(await books.searchInputField.isVisible()).toBe(true);
         await books.fillKeywordSearch(data.keywordMatchTitle);
 
-        let all_book_titles = await books.allBookTitles;
-        expect(all_book_titles.length).toBe(4);
+        let allBookTitles = await books.allBookTitles;
+        expect(allBookTitles.length).toBe(4);
 
-        expect(await all_book_titles[0].innerText()).toBe(data.bookTitles[1]);
-        expect(await all_book_titles[1].innerText()).toBe(data.bookTitles[3]);
-        expect(await all_book_titles[2].innerText()).toBe(data.bookTitles[5]);
-        expect(await all_book_titles[3].innerText()).toBe(data.bookTitles[6]);
-        
+        expect(await allBookTitles[0].innerText()).toBe(data.bookTitles[1]);
+        expect(await allBookTitles[1].innerText()).toBe(data.bookTitles[3]);
+        expect(await allBookTitles[2].innerText()).toBe(data.bookTitles[5]);
+        expect(await allBookTitles[3].innerText()).toBe(data.bookTitles[6]);
     });
 
-    test('No Rows are displayed when the keyword does not match title, author or publisher', async () => {
-        expect(page.url()).toBe(books.booksURL)
+    test("No Rows are displayed when the keyword does not match title, author or publisher", async () => {
+        expect(page.url()).toBe(books.booksURL);
 
         expect(await books.searchInputField.isVisible()).toBe(true);
         await books.fillKeywordSearch(data.keywordNoMatch);
 
         expect(await books.noRowsTxt.innerText()).toBe(data.noRowsText);
-    })
+    });
 });
